@@ -506,3 +506,21 @@ cd /root/colcon_ws
 ls
 cd /root/colcon_ws/src/
 cd /home/orb/ORB_SLAM3/ && sudo chmod +x build.sh && ./build.sh
+ls
+cd /root/
+ros2 topic pub /test std_msgs/msg/String "data: "hiii""~
+ros2 topic pub /test std_msgs/msg/String '{data: "hiii"}'
+ros2 topic list
+ros2 topic echo /cmd_vel 
+ros2 topic list
+ros2 topic pub /test std_msgs/msg/String '{data: "hiii"}'
+ros2 topic list
+ros2 topic echo /cmd_vel 
+cat /root/.ros/cyclonedds.xml 
+ros2 topic pub /test std_msgs/msg/String '{data: "hiii"}'
+ros2 topic list 
+ros2 topic echo /cmd_vel 
+nano /root/.ros/cyclonedds.xml 
+source .bashrc
+ros2 topic pub /test std_msgs/msg/String '{data: "hiii"}'
+ros2 topic echo /cmd_vel 

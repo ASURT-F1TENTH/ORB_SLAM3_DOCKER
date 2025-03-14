@@ -69,3 +69,7 @@ RUN if [ "$USE_CI" = "true" ]; then \
     fi
 
 RUN rm -rf /home/orb/ORB_SLAM3 /root/colcon_ws
+
+COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
+ENTRYPOINT [ "./entrypoint.sh" ]

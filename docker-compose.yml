@@ -2,6 +2,7 @@ version: "3"
 services:
   orb_slam3_22_humble:
     image: orb-slam3-humble:22.04
+    privileged: true
     volumes:
       #full dev
       - /dev:/dev:rw
@@ -17,11 +18,11 @@ services:
       - ./orb_slam3_map_generator/:/root/colcon_ws/src/orb_slam3_map_generator/
       - ./slam_msgs/:/root/colcon_ws/src/slam_msgs/
       - ./ORB_SLAM3/:/home/orb/ORB_SLAM3/
-    privileged: true
+      - /dev/shm:/dev/shm
     network_mode: host
     ipc: host
+    pid: host
     stdin_open: true
     tty: true
     environment:
       - DISPLAY
-    entrypoint: /bin/bash
