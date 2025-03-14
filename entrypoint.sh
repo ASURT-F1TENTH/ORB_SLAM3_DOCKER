@@ -12,7 +12,8 @@ fi
 #check if that directory exists
 cd /root/colcon_ws
 if [ -d "/root/colcon_ws/install" ]; then
-   echo "Directory /root/colcon_ws/install exists."
+   echo "Directory /root/colcon_ws/install exists." 
+   source install/setup.bash
 else
     colcon build --symlink-install && source install/setup.bash
 fi

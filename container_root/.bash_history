@@ -524,3 +524,6 @@ nano /root/.ros/cyclonedds.xml
 source .bashrc
 ros2 topic pub /test std_msgs/msg/String '{data: "hiii"}'
 ros2 topic echo /cmd_vel 
+cd /root/colcon_ws/
+cd src/
+ls
