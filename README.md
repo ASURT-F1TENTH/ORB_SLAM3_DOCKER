@@ -21,30 +21,31 @@ This repository contains a dockerized comprehensive wrapper for ORB-SLAM3 on ROS
 
 ```bash
 cd ORB-SLAM3-ROS2-Docker
-sudo chmod +x container_root/shell_scripts/docker_install.sh
-./container_root/shell_scripts/docker_install.sh
+sudo chmod +x container_root/shell_scripts/docker_install.sh #if you don't have docker installed
+./container_root/shell_scripts/docker_install.sh ##if you don't have docker installed
 ```
 
 ## 3. Build the image with ORB_SLAM3
 
-1. Build the image: ```sudo docker build --build-arg USE_CI=false -t orb-slam3-humble:22.04 .```
-2. Add ```xhost +``` to your ```.bashrc``` to support correct x11-forwarding using ```echo "xhost +" >> ~/.bashrc```
-3. ```source ~/.bashrc```
-4. You can see the built images on your machine by running ```sudo docker images```.
-
-## 4. Running the container
+1. Build the image: 
+    ```bash
+    sudo docker build --build-arg USE_CI=false -t orb-slam3-humble:22.04 .
+    ```
+2. Add ```xhost +``` to your ```.bashrc``` to support correct x11-forwarding using 
+    ```bash
+    echo "xhost +" >> ~/.bashrc
+    ```
+3. source the changes in the .bashrc
+    ```bash
+    source ~/.bashrc
+    ```
+## 4. Running the container and run the orb slam rgbd
 
 1. ```cd ORB-SLAM3-ROS2-Docker``` (ignore if you are already in the folder)
-2. ```sudo docker compose run orb_slam3_22_humble```
-3. This should take you inside the container. Once you are inside, run the command ```xeyes``` and a pair of eyes should pop-up. If they do, x11 forwarding has correctly been setup on your computer.
-
-## 5. Building the ORB-SLAM3 Wrapper
-
-Launch the container using steps in (4).
-```bash
-cd /home/orb/ORB_SLAM3/ && sudo chmod +x build.sh && ./build.sh
-cd /root/colcon_ws/ && colcon build --symlink-install && source install/setup.bash
-```
+2. run the container after building the container in section number 3 step 1 
+    ``` bash
+    sudo docker compose run orb_slam3_22_humble # this will launch the orb slam for rgbd camera no need to do further lines
+    ```
 
 ## Launching ORB-SLAM3
 
@@ -59,10 +60,6 @@ If you are inside the container, run the following:
 1. Setup the ORB-SLAM3 ROS2 Docker using the steps above. Once you do (1) step in the ```Launching ORB-SLAM3``` section, you should see a window popup which is waiting for images. This is partially indicative of the setup correctly done.
 2. Setup the simulation by following the README [here](https://github.com/suchetanrs/gz-sim-environment)
 3. Once you are able to teleop the robot, you should be able to run ORB-SLAM3 with both the containers (simulation and wrapper) running parallely.
-
-### Potential issues you may face.
-The simulation and the wrapper both have their ```ROS_DOMAIN_ID``` set to 55 so they are meant to work out of the box. However, you may face issues if this environment variable is not set properly. Before you start the wrapper, run ```ros2 topic list``` and make sure the topics namespaced with ```robot_0``` are visible inside the ORB-SLAM3 container provided the simulation is running along the side.
-
 
 ## Important notes
 
