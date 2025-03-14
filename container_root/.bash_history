@@ -498,3 +498,11 @@ ls
 tmux
 ls
 ros2 launch orb_slam3_ros2_wrapper unirobot.launch.py 
+ros2 topic pub /test std_msgs/msg/String 
+ros2 topic pub /test std_msgs/msg/String "data: "hiii""
+ros2 launch orb_slam3_ros2_wrapper unirobot.launch.py 
+source .bashrc 
+cd /root/colcon_ws
+ls
+cd /root/colcon_ws/src/
+cd /home/orb/ORB_SLAM3/ && sudo chmod +x build.sh && ./build.sh
